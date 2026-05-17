@@ -1,14 +1,21 @@
 var numberofdrum = document.querySelectorAll(".drum").length;
 
 for (i = 0; i < numberofdrum; i++){
-document.querySelectorAll("button")[i].addEventListener("click",clicked);
+document.querySelectorAll("button")[i].addEventListener("click",function (){
+    var buttonInnerHTML = this.innerHTML;
+    makesound(innerHTML);
+    buttonanimation(innerHTML);
+});
 }
 
-function clicked (){
+document.queryselector("keydown",function(event){
+    makesound(event.key);
+    buttonanimation(event.key);
+}
 
-    var buttonInnerHTML = this.innerHTML;
+function makesound (key){
 
-    switch (buttonInnerHTML) {
+    switch (key) {
         case "w":
             var tom1 = new Audio("sounds/tom-1.mp3");
             tom1.play();
@@ -41,4 +48,14 @@ function clicked (){
 
         default: console.log("innerHTML");
     }
+}
+
+function buttonanimation(currentkey){
+    var activebutton = queryselector("." + currentkey);
+    
+    currentkey.classlist.add("pressed");
+
+    setTimeout(function(){
+        activebutton.classList.remove("pressed");
+    }, 100);
 }
